@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.teofilo.jobsCrawler.crawler.DetailCrawler;
 import com.teofilo.jobsCrawler.crawler.JobCrawler;
 import com.teofilo.jobsCrawler.entities.JobKey;
@@ -12,6 +14,7 @@ import com.teofilo.jobsCrawler.util.Semaphore;
 
 public class Main {
 	
+	private static final Logger LOGGER = LoggerFactory.getLogger(Main.class);
 	public static final List <String> jobLinks = new ArrayList<String>();
 	public static final Map<JobKey, Float> jobSalaryMap = new HashMap<JobKey, Float>();
 	public static final List<JobKey> jobs = new ArrayList<JobKey>();

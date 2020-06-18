@@ -9,7 +9,9 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 import com.teofilo.jobsCrawler.Main;
+import com.teofilo.jobsCrawler.entities.JobDetail;
 import com.teofilo.jobsCrawler.entities.JobKey;
+import com.teofilo.jobsCrawler.rabbitmq.Produtor;
 import com.teofilo.jobsCrawler.util.Semaphore;
 
 
@@ -44,34 +46,14 @@ public class DetailCrawler implements Runnable{
 			Elements roleElement = doc.getElementsByClass("job-hierarchylist__item job-hierarchylist__item--level");
 			String role = roleElement.text();
 			
-			//JobKey jobKey = new JobKey(location, role);
-			//Float avarageSalary = salary;
-			
-			//this.semaphore.acquire();
-			
-//			if(Main.jobSalaryMap.containsKey(jobKey)) {
-//				avarageSalary = (Main.jobSalaryMap.get(jobKey) + salary) / 2;
-//			}
-//			
-//			Main.jobSalaryMap.put(jobKey, avarageSalary);
-			
-			
-		
-//			for ( Map.Entry<JobKey, Float> entry : Main.jobSalaryMap.entrySet()) {
-//				System.out.printf("%-90.90s%s%.2f%n",entry.getKey(),"| ",entry.getValue());
-//			}
-			
-			//System.out.printf("%-30.30s%-90.90s%s%.2f%n",location, role,"| ",salary);
-			
 			System.out.printf("[%s - %s] %s%.2f\n",location, role,"|",salary);
+			
+			Produtor producer = new Produtor("1", "123", "1231");
+			producer.publish(new JobDetail(location, salary, role));
+			
 						
-		}catch(IndexOutOfBoundsException e) {
-			//System.out.println("Erro Parsing Page!");
-//		} catch (InterruptedException e) {
-//			System.out.println("Semaphore Error");
-//			e.printStackTrace();
-//		} finally {
-//			this.semaphore.release();
+		}catch(Exception e) {
+			System.out.println("Erro Parsing Page!");
 		}
 		
 	}

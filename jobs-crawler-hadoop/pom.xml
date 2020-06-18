@@ -18,5 +18,28 @@
 	    <artifactId>hadoop-core</artifactId>
    		<version>1.2.1</version>
 	</dependency>
+	<dependency>
+	     <groupId>com.rabbitmq</groupId>
+	     <artifactId>amqp-client</artifactId>
+	     <version>5.7.3</version>
+	 </dependency>
+	
+	 <dependency>
+	     <groupId>org.json</groupId>
+	     <artifactId>json</artifactId>
+	     <version>20190722</version>
+	 </dependency>
+	
+	 <dependency>
+	     <groupId>org.slf4j</groupId>
+	     <artifactId>slf4j-log4j12</artifactId>
+	     <version>1.7.25</version>
+	 </dependency>
+	
+	 <dependency>
+	     <groupId>org.jboss.weld.se</groupId>
+	     <artifactId>weld-se-core</artifactId>
+	     <version>3.0.1.Final</version>
+	 </dependency>
   </dependencies>  
 </project>
