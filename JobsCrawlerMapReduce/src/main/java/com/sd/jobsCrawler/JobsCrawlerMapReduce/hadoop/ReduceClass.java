@@ -11,9 +11,9 @@ public class ReduceClass extends Reducer<Text, FloatWritable, Text, FloatWritabl
 	public void reduce(Text text, Iterable<FloatWritable> values, Context context)
 			throws IOException, InterruptedException {
 		
-		Float median = 0.0f;
-		for (FloatWritable value : values) {
-			median += (value.get() + median) / 2;
+		Float median = values.iterator().next().get();
+		for (FloatWritable value : values) {			
+			median = (value.get() + median) / 2;
 		}
 		context.write(text, new FloatWritable(median));
 	}

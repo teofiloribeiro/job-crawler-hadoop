@@ -1,4 +1,4 @@
-package com.teofilo.jobs_crawler.util;
+package com.teofilo.jobsCrawler.util;
 
 public class Semaphore {
 

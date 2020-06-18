@@ -5,7 +5,7 @@ import java.io.IOException;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.FloatWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
@@ -32,7 +32,7 @@ public class Main {
 		Configuration conf = new Configuration(true);
 
 		// Criar o job
-		Job job = new Job(conf, "ContaPalavras");
+		Job job = new Job(conf, "Crawler Median");
 		job.setJarByClass(Main.class);
 
 		// Definir classes para Map e Reduce
@@ -42,7 +42,7 @@ public class Main {
 
 		// Definir as chaves e valor
 		job.setOutputKeyClass(Text.class);
-		job.setOutputValueClass(IntWritable.class);
+		job.setOutputValueClass(FloatWritable.class);
 
 		// Entradas
 		FileInputFormat.addInputPath(job, inputPath);

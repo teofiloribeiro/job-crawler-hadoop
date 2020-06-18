@@ -1,4 +1,4 @@
-package com.teofilo.jobs_crawler.entities;
+package com.teofilo.jobsCrawler.entities;
 
 public class JobKey {
 	private String location;

@@ -1,11 +1,11 @@
-package com.teofilo.jobs_crawler.crawler;
+package com.teofilo.jobsCrawler.crawler;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import com.teofilo.jobs_crawler.Main;
+import com.teofilo.jobsCrawler.Main;
 
 public class JobCrawler implements Runnable{
 	private Document doc;

@@ -1,4 +1,4 @@
-package com.teofilo.jobs_crawler.hadoop;
+package com.teofilo.jobsCrawler.hadoop;
 
 import java.io.IOException;
 import java.util.Iterator;

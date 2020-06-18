@@ -1,4 +1,4 @@
-package com.teofilo.jobs_crawler.crawler;
+package com.teofilo.jobsCrawler.crawler;
 
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -8,9 +8,9 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
-import com.teofilo.jobs_crawler.Main;
-import com.teofilo.jobs_crawler.entities.JobKey;
-import com.teofilo.jobs_crawler.util.Semaphore;
+import com.teofilo.jobsCrawler.Main;
+import com.teofilo.jobsCrawler.entities.JobKey;
+import com.teofilo.jobsCrawler.util.Semaphore;
 
 
 public class DetailCrawler implements Runnable{
@@ -37,6 +37,10 @@ public class DetailCrawler implements Runnable{
 			
 			Float salary = parseSalary(salaryText);
 			
+			if(salary == null) {
+				return;
+			}
+			
 			Elements roleElement = doc.getElementsByClass("job-hierarchylist__item job-hierarchylist__item--level");
 			String role = roleElement.text();
 			
@@ -62,7 +66,7 @@ public class DetailCrawler implements Runnable{
 			System.out.printf("[%s - %s] %s%.2f\n",location, role,"|",salary);
 						
 		}catch(IndexOutOfBoundsException e) {
-			System.out.println("Erro Parsing Page!");
+			//System.out.println("Erro Parsing Page!");
 //		} catch (InterruptedException e) {
 //			System.out.println("Semaphore Error");
 //			e.printStackTrace();
@@ -74,15 +78,13 @@ public class DetailCrawler implements Runnable{
 	
 
 	private static Float parseSalary(String text) {
-		Float result = 1000f;
+		Float result = null;
 		Pattern p = Pattern.compile("([0-9]*([,.][0-9]*))");
 		Matcher m = p.matcher(text);
 		
 		while(m.find()) {
-			result = Float.parseFloat(m.group().replace(".", "").replace(",", ""));
-			break;
+			return Float.parseFloat(m.group().replace(".", "").replace(",", ""));
 		}
-		
 		return result;
 	}
 	
